@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <center><h1>Example Postmaster Integration</h1></center>
+      <p>You can use any real address in the United States to test this integration. If you do not want to use any personal information, you can use <a href="http://www.fakenamegenerator.com/">FakeNameGenerator.com</a> It provides valid addresses and is a great resource for testing.</p>
+        <h2>Fill in the info below to get example printable postage.</h2>
+    </div>
+    <div class="col-sm-12">
+      <form>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input class="form-control" ng-model="info.cName" type="text" placeholder="4111111111111111"/>
+        </div>
+        <div class="form-group">
+          <label>Street Address</label>
+          <input class="form-control" ng-model="info.StoAddr" type="text" placeholder="01"/>
+        </div>
+        <div class="form-group">
+          <label>City</label>
+          <input class="form-control" ng-model="info.StoCity" type="text" placeholder="17"/>
+        </div>
+        <div class="form-group">
+          <label>State</label>
+          <input class="form-control" ng-model="info.StoState" type="text" placeholder="123"/>
+        </div>
+        <div class="form-group">
+          <label>Zip Code</label>
+          <input class="form-control" ng-model="info.StoZip" type="text" placeholder="123"/>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input class="form-control" ng-model="info.cPhone" type="text" placeholder="123"/>
+        </div>
+        <button class="btn btn-primary bt btn-block" ng-click="createPostage()">Create Test Postage</button>
+      </form>
+    </div>
+    <div ng-show="response.status=='Processing'" class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-12 bg-success">
+          <h2>Your test postage has been created successfully.
+            <br>
+            The details are the following:</h2>
+        </div>
+        <div class="col-sm-6">
+          <br>
+          <h3>Tracking Number: {{response.tracking[0]}}</h3>
+          <br>
+        </div>
+        <div class="col-sm-6">
+          <br>
+          <h3>Postage Cost: {{response.cost | currency:$}}</h3>
+        </div>
+      </div>
+        <br>
+    </div>
+    <div ng-show=" infoSent && response.status !== 'Processing'" class="col-sm-12 bg-danger">
+      <p>Oops... an error occured... check below for more info.</p>
+      <p ng-repeat="x in response">
+        {{x}}
+        <br>
+      </p>
+      <br>
+    </div>
+  </div>
+</div>
